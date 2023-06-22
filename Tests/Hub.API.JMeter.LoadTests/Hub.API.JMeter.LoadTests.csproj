@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net5.0</TargetFramework>
+		<ApplicationIcon />
+		<StartupObject />
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.14" />
+	  <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+	  <PackageReference Include="Moq" Version="4.17.2" />
+	  <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Sources\Hub.API\Hub.API.csproj" />
+	  <ProjectReference Include="..\..\Web\SummaryReport.Common\Report.Common.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="appSettings.AUTO2.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		  <DependentUpon>appSettings.json</DependentUpon>
+		</None>
+		<None Update="appSettings.DEV02.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<DependentUpon>appSettings.json</DependentUpon>
+		</None>
+		<None Update="appSettings.TST03.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<DependentUpon>appSettings.json</DependentUpon>
+		</None>
+		<None Update="appSettings.json">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="TestsPlan\FindPaymentPlan\Scenario 1 - FindPaymentPlan - 5 users hit to server sec in duration of 10 mins.jmx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="TestsPlan\FindPaymentPlan\Scenario 2 - FindPaymentPlan - 100 users hit to server then ramp-up and ramp-down by 25 users.jmx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="TestsPlan\UnpaidBills\Scenario 1 - UnpaidBills - 5 users hit to server sec in duration of 10 mins.jmx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="TestsPlan\UnpaidBills\Scenario 2 - UnpaidBills - 100 users hit to server then ramp-up and ramp-down by 25 users.jmx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

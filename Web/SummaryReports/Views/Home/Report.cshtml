@@ -1,0 +1,129 @@
+﻿<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['line', 'bar', 'corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = JSON.parse('@Html.Raw(ViewBag.datapoint)');
+
+            var percentileData = new google.visualization.DataTable();
+            percentileData.addColumn('string', '');
+            percentileData.addColumn('number', '90th Percentile');
+            percentileData.addColumn('number', '95th Percentile');
+            percentileData.addColumn('number', '99th Percentile');
+
+            var throughputData = new google.visualization.DataTable();
+            throughputData.addColumn('string', '');
+            throughputData.addColumn('number', 'Thoughput');
+
+            var comboData = new google.visualization.DataTable();
+            comboData.addColumn('string', '');
+            comboData.addColumn('number', 'Samples');
+            comboData.addColumn('number', 'Failed cases');
+            comboData.addColumn('number', 'Average');
+
+            $.each(data.summaryReportDataPoints, function (index, row) {
+                percentileData.addRow([
+                    row.version,
+                    row.percentile90th,
+                    row.percentile95th,
+                    row.percentile99th,
+                ]);
+
+
+                throughputData.addRow([
+                    row.version,
+                    row.throughput,
+                ]);
+
+                comboData.addRow([
+                    row.version,
+                    row.samples,
+                    row.failCases,
+                    row.average,
+                ]);
+
+            });
+
+            var textStyle = {
+                color: 'grey',
+                fontName: 'Times-Roman',
+                fontSize: 13,
+                bold: true,
+                italic: false
+            };
+
+            var percentileOptions = {
+                chart: {
+                    title: 'Percentile Summary',
+                },
+                width: 900,
+                height: 500,
+                vAxis: {
+                    title: 'Response time in ms',
+                    format: 'decimal',
+                    textStyle: textStyle
+                },
+                hAxis: {
+                    textStyle: textStyle
+                }
+            };
+
+            var throughputOptions = {
+                chart: {
+                    title: 'Throughput Summary',
+                },
+                width: 900,
+                height: 500,
+                vAxis: {
+                    title: 'Number of transactions/sec',
+                    format: 'decimal',
+                    textStyle: textStyle
+                },
+                hAxis: {
+                    textStyle: textStyle
+                }
+            };
+
+            var comboOptions = {
+                title: 'Overall Summary ' + data.title,
+                titleTextStyle: {
+                    color: '#FF0000',
+                    fontSize: 20
+                },
+                width: 900,
+                height: 500,
+                vAxis: {
+                    title: 'Average response time in ms',
+                    format: 'decimal',
+                    textStyle: textStyle
+                },
+                hAxis: {
+                    textStyle: textStyle
+                },
+                seriesType: 'bars',
+                series: { 2: { type: 'line' } },
+            }
+
+            var percentileChart = new google.charts.Line(document.getElementById('percentile_chart'));
+            var throughputChart = new google.charts.Line(document.getElementById('throughput_chart'));
+            var comboChart = new google.visualization.ComboChart(document.getElementById('combochart_chart'));
+            percentileChart.draw(percentileData, google.charts.Line.convertOptions(percentileOptions));
+            throughputChart.draw(throughputData, google.charts.Line.convertOptions(throughputOptions));
+            comboChart.draw(comboData, comboOptions);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="combochart_chart" style="width: 1200px; height: 500px"></div>
+    <br />
+    <div id="throughput_chart" style="width: 1200px; height: 500px"></div>
+    <br />
+    <div id="percentile_chart" style="width: 1200px; height: 500px"></div>
+</body>
+
+</html>

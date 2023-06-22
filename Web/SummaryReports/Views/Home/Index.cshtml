@@ -1,0 +1,59 @@
+﻿<html>
+<body>
+    @{
+        if (!SharedSettings.IsPresent)
+        {
+            <form action="Home/Settings" method="post" name="settingForm">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="reportSetting" id="radioReportSetting1" value="ByTimelines">
+                    <label class="form-check-label" for="radioReportSetting1">
+                        Get Top 5 Report by timelines
+                    </label>
+                </div>
+                <br />
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="reportSetting" id="radioReportSetting2" value="ByVersion">
+                    <label class="form-check-label" for="radioReportSetting2">
+                        Get Top 5 Report by version
+                    </label>
+                </div>
+                <br />
+                <select class="form-control" id="version" name="version">
+                    @foreach (var version in ViewBag.Versions)
+                    {
+                        <option>@version</option>
+                    }
+                </select>
+                <br />
+                <input type="submit" name="submit" />
+            </form>
+        }
+        else
+        {
+            <form action="Home/ResetSettings" method="post" name="resetSettingForm">
+                @if (SharedSettings.Setting == SharedSettings.ByTimeline)
+                {
+                <p>Your current report is now comparing by timelines</p>
+                }
+                else
+                {
+                <p>Your current report is now comparing by version named: @SharedSettings.Version</p>
+                }
+
+                <input type="submit" name="submit" value="Reset settings"/>
+            </form>
+        }
+    }
+</body>
+</html>
+<script>
+    $('select[name=version]').hide();
+    $('input[type=radio][name=reportSetting]').change(function () {
+        if (this.value == 'ByVersion') {
+            $('select[name=version]').show();
+        } else {
+            $('select[name=version]').hide();
+        }
+    });
+</script>
+

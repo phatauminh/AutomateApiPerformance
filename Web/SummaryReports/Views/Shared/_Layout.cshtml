@@ -1,0 +1,211 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SummaryReports</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SummaryReports</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                @{if (SharedSettings.IsPresent)
+                    {
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item dropdown">
+                                    <a href="#" id="menu" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" data-bs-display="static">FUSE Based API</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Find Payment Plan</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="FindPaymentPlan" asp-action="Five_Users_Hit_To_Server_In_Duration_Of_10_Mins_Summary">5 Users hit to server in 10mins</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="FindPaymentPlan" asp-action="A_Hundred_Users_Hit_To_Server_Ramp_Up_Ramp_Down_To_25_Users_Summary">100 Users hit to server then ramp-up and down by 25 users</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Unpaid Bills</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="UnpaidBills" asp-action="Five_Users_Hit_To_Server_In_Duration_Of_10_Mins_Summary">5 Users hit to server in 10mins</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="UnpaidBills" asp-action="A_Hundred_Users_Hit_To_Server_Ramp_Up_Ramp_Down_To_25_Users_Summary">100 Users hit to server then ramp-up and down by 25 users</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Get Domestic Customer</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Get Commercial Customer</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Sign Up API</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Dependent Domain</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Simple Domain</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Get Offers</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a href="#" id="menu" data-bs-toggle="dropdown" class="nav-link dropdown-toggle" data-bs-display="static">HCM API</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Get Usage</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="FindPaymentPlan" asp-action="Five_Users_Hit_To_Server_In_Duration_Of_10_Mins_Summary">5 Users hit to server in 10mins</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="FindPaymentPlan" asp-action="A_Hundred_Users_Hit_To_Server_Ramp_Up_Ramp_Down_To_25_Users_Summary">100 Users hit to server then ramp-up and down by 25 users</a>
+
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Get Usage Detail</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Get Invoice</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="dropdown-submenu dropright">
+                                            <a href="#" data-bs-toggle="dropdown" class="dropdown-item dropdown-toggle">Get Customer</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item a</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="dropdown-item">Item b</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                }
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - SummaryReports
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+
+<style>
+    .dropdown-submenu {
+        position: relative;
+    }
+
+        .dropdown-submenu .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+        }
+
+    .navbar-nav li:hover > ul.dropdown-menu {
+        display: block;
+    }
+</style>
+
